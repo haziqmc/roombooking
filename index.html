@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Booking System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px;
+            background-image: url(room.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        #booking-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            width: 200px;
+            border: 2px black solid;
+            background-color: white;
+        }
+
+        #total-container {
+            border: 10px solid #ddd;
+            padding: 10px;
+            text-align: center;
+            background-color: green;
+        }
+
+        @media screen and (min-width: 600px) {
+            body {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #booking-container {
+                width: 400px;
+            }
+        }
+
+        @media screen and (min-width: 800px) {
+            body {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2 style="font-size: 40px; color: black; font-weight: 800;">Room Booking System</h2>
+
+    <div id="booking-container">
+        <label for="booking-date">Select Date:</label>
+        <input type="date" id="booking-date">
+
+        <label for="num-rooms">Number of Rooms:</label>
+        <input type="number" id="num-rooms" min="1" placeholder="Number of Rooms">
+
+        <button onclick="calculateTotal()">Calculate Total</button>
+    </div>
+
+    <div id="total-container">
+        <h3>Total Booking Cost</h3>
+        <p>Total Rooms: <span id="total-rooms">0</span></p>
+        <p>Total Cost: RM<span id="total-cost">0</span></p>
+    </div>
+
+    <script>
+        function calculateTotal() {
+            const bookingDateInput = document.getElementById('booking-date');
+            const numRoomsInput = document.getElementById('num-rooms');
+            const totalRoomsElement = document.getElementById('total-rooms');
+            const totalCostElement = document.getElementById('total-cost');
+
+            const bookingDate = bookingDateInput.value;
+            const numRooms = parseInt(numRoomsInput.value);
+
+            if (!bookingDate || isNaN(numRooms) || numRooms <= 0) {
+                alert("Please enter a valid date and number of rooms.");
+                return;
+            }
+
+            // You can add more complex logic to calculate the total cost based on the date and other factors.
+            const roomCost = 85; // Cost per room
+            const totalCost = numRooms * roomCost;
+
+            totalRoomsElement.textContent = numRooms;
+            totalCostElement.textContent = totalCost;
+        }
+    </script>
+</body>
+</html>
